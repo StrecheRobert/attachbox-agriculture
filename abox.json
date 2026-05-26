@@ -1,1 +1,56 @@
 
+{
+  "version": 1,
+  "activities": [
+    {
+      "id": "home",
+      "title": "BEIA Agriculture Solutions",
+      "description": "General information about BEIA and its smart agriculture solutions.",
+      "url": "https://strecherobert.github.io/attachbox-agriculture/index.html",
+      "visible": true,
+      "open_once": false,
+      "triggers": ["tap"],
+      "category": "General"
+    },
+    {
+      "id": "agriculture-projects",
+      "title": "Smart Agriculture Projects",
+      "description": "Explore BEIA projects, use-cases and IoT-based solutions for agriculture.",
+      "url": "https://strecherobert.github.io/attachbox-agriculture/agriculture-projects.html",
+      "visible": false,
+      "open_once": false,
+      "triggers": ["beacon"],
+      "beacon_ids": ["beacon-room-101"],
+      "category": "Agriculture"
+    },
+    {
+      "id": "contact-form",
+      "title": "Collaboration Contact Form",
+      "description": "Leave your contact details for future collaboration opportunities.",
+      "url": "https://strecherobert.github.io/attachbox-agriculture/contact-form.html",
+      "visible": false,
+      "open_once": false,
+      "triggers": ["beacon"],
+      "beacon_ids": ["beacon-room-102"],
+      "category": "Collaboration"
+    }
+  ],
+  "beacons": [
+    {
+      "id": "beacon-room-101",
+      "name": "Agriculture Projects Beacon",
+      "uuid": "ae7101dd-7154-4561-bca1-091919bd7f40",
+      "major": 46172,
+      "minor": 56958,
+      "description": "Beacon used to open the agriculture projects and use-cases page."
+    },
+    {
+      "id": "beacon-room-102",
+      "name": "Collaboration Form Beacon",
+      "uuid": "b9407f30-f5f8-466e-aff9-25556b57fe6d",
+      "major": 49668,
+      "minor": 48887,
+      "description": "Beacon used to open the contact form page."
+    }
+  ]
+}

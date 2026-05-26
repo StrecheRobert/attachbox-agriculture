@@ -40,7 +40,7 @@
       color: white;
       background:
         linear-gradient(135deg, rgba(243, 154, 40, 0.96), rgba(210, 115, 0, 0.94)),
-        radial-gradient(circle at top right, rgba(255, 255, 255, 0.3), transparent 35%);
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 35%);
       overflow: hidden;
     }
 
@@ -49,11 +49,11 @@
       position: absolute;
       width: 330px;
       height: 330px;
-      background: white;
+      background: rgba(22, 63, 145, 0.22);
       border-radius: 50%;
       right: -85px;
       top: -80px;
-      opacity: 0.92;
+      opacity: 1;
     }
 
     .hero::after {
@@ -436,6 +436,44 @@
       font-size: 13px;
     }
 
+    @media (max-width: 759px) {
+      .hero {
+        padding: 42px 18px 74px;
+      }
+
+      .hero::before {
+        width: 220px;
+        height: 220px;
+        right: -125px;
+        top: -45px;
+        background: rgba(22, 63, 145, 0.20);
+      }
+
+      .hero::after {
+        width: 260px;
+        height: 70px;
+        right: -120px;
+        bottom: 20px;
+        opacity: 0.78;
+      }
+
+      .dot-pattern {
+        width: 92px;
+        height: 92px;
+        opacity: 0.42;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+        max-width: 100%;
+      }
+
+      .hero p {
+        font-size: 16px;
+        max-width: 100%;
+      }
+    }
+
     @media (min-width: 760px) {
       .hero {
         padding: 64px 24px 96px;
@@ -626,14 +664,14 @@
             <span class="tag">Detectare boli</span>
           </div>
         </div>
-        
+
         <div class="project">
           <div class="project-title">
             <div class="project-icon">D</div>
-            <h3>DISAVIT</h3>
+            <h3>Dis4Vit</h3>
           </div>
           <p>
-            DISAVIT propune un sistem de sprijinire a deciziilor pentru gestionarea podgoriilor la fața locului,
+            Dis4Vit propune un sistem de sprijinire a deciziilor pentru gestionarea podgoriilor la fața locului,
             bazat pe o soluție de viticultură IoT. Proiectul integrează senzori tradiționali și noi, stații
             meteorologice, date satelitare de înaltă rezoluție, UAV-uri, biosenzori portabili și un motor
             analitic avansat pentru transformarea datelor colectate în informații utile pentru viticultori.
@@ -644,7 +682,7 @@
             <span class="tag">Blockchain</span>
           </div>
         </div>
-        
+
         <div class="project">
           <div class="project-title">
             <div class="project-icon">U</div>

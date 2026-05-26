@@ -7,66 +7,184 @@
   <title>Formular de interes — Wallachia eHub 2.0</title>
 
   <style>
+    :root {
+      --blue: #163f91;
+      --blue-dark: #0e2b68;
+      --green: #4f9a3d;
+      --green-dark: #2f6f2d;
+      --orange: #f6a313;
+      --bg: #f5f8fb;
+      --text: #1f2933;
+      --muted: #5f6f7a;
+      --white: #ffffff;
+      --shadow: 0 12px 32px rgba(15, 40, 80, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f8f3;
-      color: #1f2933;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg, #1b7f3a, #5fa83b);
+    .hero {
+      position: relative;
       color: white;
-      padding: 38px 20px;
-      text-align: center;
+      padding: 46px 20px 70px;
+      background:
+        linear-gradient(135deg, rgba(22, 63, 145, 0.95), rgba(14, 43, 104, 0.94)),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 35%);
+      overflow: hidden;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 27px;
-      line-height: 1.25;
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: var(--green);
+      transform: rotate(35deg);
+      right: -100px;
+      top: 20px;
+      opacity: 0.9;
+      border-radius: 28px;
     }
 
-    header p {
-      margin-top: 12px;
-      font-size: 16px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 70px;
+      background: var(--orange);
+      transform: rotate(-28deg);
+      right: -70px;
+      bottom: 26px;
+      opacity: 0.95;
+      border-radius: 16px;
     }
 
-    main {
-      padding: 22px 14px;
-      max-width: 900px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
       margin: auto;
     }
 
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.16;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin-top: 16px;
+      max-width: 760px;
+      font-size: 17px;
+      color: #e9f1ff;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.14);
+      border-left: 4px solid var(--orange);
+      padding: 10px 13px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 980px;
+      margin: -40px auto 0;
+      padding: 0 14px 28px;
+      position: relative;
+      z-index: 3;
+    }
+
     .card {
-      background: white;
-      border-radius: 16px;
+      background: var(--white);
+      border-radius: 22px;
       padding: 22px;
       margin-bottom: 18px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      box-shadow: var(--shadow);
+      animation: rise 0.7s ease both;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.24s;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(18px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     h2 {
-      color: #1b7f3a;
-      margin-top: 0;
-      font-size: 22px;
+      color: var(--blue);
+      margin: 0 0 12px;
+      font-size: 24px;
+      line-height: 1.25;
     }
 
     h3 {
-      color: #2f5d35;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 17px;
+    }
+
+    .intro {
+      border-top: 6px solid var(--orange);
     }
 
     .highlight {
-      background: #e6f4ea;
-      border-left: 5px solid #1b7f3a;
-      padding: 14px 16px;
-      border-radius: 10px;
-      margin-top: 14px;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eaf4e7, #fff6df);
+      border-left: 5px solid var(--green);
     }
 
-    .grid {
+    .services {
       display: grid;
       grid-template-columns: 1fr;
       gap: 14px;
@@ -74,54 +192,245 @@
     }
 
     .service {
-      background: #f7faf7;
-      border-radius: 14px;
-      padding: 16px;
-      border: 1px solid #d9eadc;
-    }
-
-    .service strong {
-      color: #1b7f3a;
-    }
-
-    .form-wrapper {
-      width: 100%;
+      position: relative;
       overflow: hidden;
-      border-radius: 12px;
-      background: #f7f7ff;
+      padding: 18px;
+      border-radius: 18px;
+      background: #f8fbff;
+      border: 1px solid #dce7f5;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      right: -24px;
+      top: -24px;
+      background: rgba(246, 163, 19, 0.18);
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(15, 40, 80, 0.12);
+    }
+
+    .service-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .target-box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
       margin-top: 14px;
     }
 
-    iframe {
+    .target {
+      padding: 14px;
+      border-radius: 16px;
+      background: #eef7ec;
+      border: 1px solid #d3e8ce;
+      font-weight: bold;
+      color: var(--green-dark);
+    }
+
+    .form-card {
+      border-top: 6px solid var(--green);
+    }
+
+    form {
+      margin-top: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      color: #263544;
+    }
+
+    .required {
+      color: #d93025;
+    }
+
+    input,
+    select,
+    textarea {
       width: 100%;
-      min-height: 1450px;
+      padding: 13px 14px;
+      border: 1px solid #cfd8dc;
+      border-radius: 13px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(22, 63, 145, 0.12);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .check-item,
+    .radio-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px;
+      border-radius: 13px;
+      background: #f8fbff;
+      border: 1px solid #dce7f5;
+    }
+
+    .check-item input,
+    .radio-item input {
+      width: auto;
+      margin-top: 3px;
+      box-shadow: none;
+    }
+
+    .check-item span,
+    .radio-item span {
+      font-weight: normal;
+      line-height: 1.4;
+    }
+
+    .consent {
+      margin-top: 16px;
+    }
+
+    .submit-row {
+      margin-top: 20px;
+    }
+
+    button {
+      width: 100%;
       border: none;
+      border-radius: 16px;
+      padding: 15px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(22, 63, 145, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(22, 63, 145, 0.28);
+    }
+
+    button:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 14px;
+      background: #e6f4ea;
+      color: #1f6f35;
+      border-left: 5px solid var(--green);
+      font-weight: bold;
+    }
+
+    .error {
+      display: none;
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 14px;
+      background: #fff3f0;
+      color: #b3261e;
+      border-left: 5px solid #d93025;
+      font-weight: bold;
     }
 
     .note {
+      color: var(--muted);
       font-size: 14px;
-      color: #5f6f7a;
       margin-top: 12px;
     }
 
     footer {
       text-align: center;
-      padding: 22px 16px;
+      padding: 24px 16px 28px;
+      color: var(--muted);
       font-size: 13px;
-      color: #607080;
     }
 
-    @media (min-width: 720px) {
-      .grid {
+    .hidden-frame {
+      display: none;
+    }
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 62px 24px 86px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .services {
         grid-template-columns: 1fr 1fr;
       }
 
-      header h1 {
-        font-size: 32px;
+      .target-box {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      iframe {
-        min-height: 1350px;
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .checkbox-group {
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -129,100 +438,273 @@
 
 <body>
 
-<header>
-  <h1>Formular de interes — Wallachia eHub 2.0</h1>
-  <p>Digitalizare, inovare și colaborare pentru organizații, companii și antreprenori.</p>
-</header>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">Wallachia eHub 2.0</span>
+      <h1>Digitalizare cu beneficii reale pentru organizația ta</h1>
+      <p>
+        Completează formularul de interes și află cum poți beneficia de sprijin pentru transformare digitală,
+        testarea soluțiilor tehnologice, dezvoltarea competențelor și identificarea oportunităților de finanțare.
+      </p>
 
-<main>
-
-  <section class="card">
-    <h2>Wallachia eHub 2.0 — sprijin pentru transformare digitală</h2>
-
-    <p>
-      Wallachia eHub 2.0 sprijină companiile, antreprenorii, fermierii, organizațiile și instituțiile care doresc să își accelereze procesul de digitalizare și să identifice soluții tehnologice potrivite pentru activitatea lor.
-    </p>
-
-    <p>
-      Prin acest proiect, organizațiile interesate pot beneficia de sprijin pentru evaluarea maturității digitale, testarea unor soluții tehnologice înainte de investiție, dezvoltarea competențelor, identificarea surselor de finanțare și conectarea la un ecosistem extins de inovare.
-    </p>
-
-    <div class="highlight">
-      <strong>Scopul acestui formular</strong> este de a colecta datele de contact ale persoanelor și organizațiilor interesate de digitalizare, soluții inteligente, tehnologii verzi, agricultură inteligentă, automatizare, finanțări sau colaborări viitoare în cadrul proiectului Wallachia eHub 2.0.
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Ce tip de sprijin poate fi oferit?</h2>
-
-    <div class="grid">
-      <div class="service">
-        <strong>Testare înainte de investiție</strong>
-        <p>
-          Organizațiile pot testa și valida soluții digitale, software, aplicații cloud, tehnologii bazate pe inteligență artificială sau automatizare înainte de a face investiții majore.
-        </p>
-      </div>
-
-      <div class="service">
-        <strong>Evaluarea maturității digitale</strong>
-        <p>
-          Prin evaluarea nivelului de digitalizare, pot fi identificate nevoile reale ale organizației și pașii necesari pentru modernizarea proceselor.
-        </p>
-      </div>
-
-      <div class="service">
-        <strong>Training și dezvoltare de competențe</strong>
-        <p>
-          Proiectul poate sprijini pregătirea angajaților, managerilor și decidenților în domenii precum digitalizare, securitate cibernetică, inteligență artificială și managementul inovării.
-        </p>
-      </div>
-
-      <div class="service">
-        <strong>Acces la finanțări și parteneriate</strong>
-        <p>
-          Organizațiile pot primi îndrumare pentru identificarea unor surse de finanțare și pentru conectarea la parteneri din ecosistemul de inovare.
-        </p>
+      <div class="hero-actions">
+        <div class="pill">IMM-uri și antreprenori</div>
+        <div class="pill">Fermieri și organizații agricole</div>
+        <div class="pill">Instituții și parteneri locali</div>
       </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Cui se adresează?</h2>
+  <main>
+    <section class="card intro">
+      <h2>De ce Wallachia eHub 2.0?</h2>
+      <p>
+        Wallachia eHub 2.0 sprijină companiile, antreprenorii, fermierii, organizațiile și instituțiile interesate
+        să își accelereze procesul de digitalizare și tranziție verde. Proiectul oferă acces la expertiză,
+        testare, instruire, consultanță și conectare la un ecosistem regional și european de inovare.
+      </p>
 
-    <p>
-      Formularul se adresează în special companiilor, IMM-urilor, antreprenorilor, fermierilor, organizațiilor active în domeniul agricol sau tehnologic, dar și altor persoane interesate de soluții digitale și colaborări viitoare.
-    </p>
+      <div class="highlight">
+        <strong>Scopul formularului</strong> este de a identifica persoane și organizații interesate de servicii,
+        soluții digitale, tehnologii verzi, agricultură inteligentă, finanțări și colaborări viitoare în cadrul
+        proiectului Wallachia eHub 2.0.
+      </div>
+    </section>
 
-    <p>
-      Dacă reprezinți o firmă, o organizație, o instituție sau ai o activitate în care digitalizarea poate aduce beneficii concrete, te invităm să completezi formularul de mai jos.
-    </p>
-  </section>
+    <section class="card">
+      <h2>Ce poți primi?</h2>
 
-  <section class="card">
-    <h2>Completează formularul de interes</h2>
+      <div class="services">
+        <div class="service">
+          <div class="service-number">1</div>
+          <h3>Testezi înainte să investești</h3>
+          <p>
+            Poți explora și valida soluții digitale, aplicații cloud, automatizare, AI sau alte tehnologii
+            înainte de a face investiții majore.
+          </p>
+        </div>
 
-    <p>
-      Datele transmise vor fi utilizate pentru a te contacta în legătură cu oportunități, servicii, activități și colaborări relevante în cadrul proiectului Wallachia eHub 2.0.
-    </p>
+        <div class="service">
+          <div class="service-number">2</div>
+          <h3>Îți pregătești echipa</h3>
+          <p>
+            Ai acces la activități de training și dezvoltare de competențe pentru angajați, manageri și decidenți.
+          </p>
+        </div>
 
-    <div class="form-wrapper">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSeR-CKVzFGOeIjNzH8eYZXqVanK91Fzo7vdCs1M_oiuWf4sog/viewform?embedded=true"
-        loading="lazy">
-        Se încarcă formularul…
-      </iframe>
-    </div>
+        <div class="service">
+          <div class="service-number">3</div>
+          <h3>Accesezi mai ușor finanțări</h3>
+          <p>
+            Poți primi îndrumare pentru identificarea surselor de finanțare potrivite pentru ideile și nevoile tale.
+          </p>
+        </div>
 
-    <p class="note">
-      Răspunsurile completate în formular sunt salvate automat în Google Forms și pot fi centralizate într-un fișier Google Sheets asociat formularului.
-    </p>
-  </section>
+        <div class="service">
+          <div class="service-number">4</div>
+          <h3>Te conectezi la ecosistem</h3>
+          <p>
+            Ai oportunitatea de a intra în contact cu parteneri, experți, organizații și rețele de inovare.
+          </p>
+        </div>
+      </div>
+    </section>
 
-</main>
+    <section class="card">
+      <h2>Cui se adresează?</h2>
+      <p>
+        Formularul este destinat persoanelor și organizațiilor care pot beneficia de digitalizare, indiferent dacă
+        activează în agricultură, servicii, producție, administrație, tehnologie sau alte domenii conexe.
+      </p>
 
-<footer>
-  © BEIA Consult International — Wallachia eHub 2.0
-</footer>
+      <div class="target-box">
+        <div class="target">Companii și IMM-uri</div>
+        <div class="target">Fermieri și antreprenori</div>
+        <div class="target">Instituții și organizații</div>
+      </div>
+    </section>
+
+    <section class="card form-card">
+      <h2>Completează formularul de interes</h2>
+      <p>
+        Datele transmise vor fi utilizate pentru a te contacta în legătură cu oportunități, servicii,
+        activități și colaborări relevante în cadrul proiectului Wallachia eHub 2.0.
+      </p>
+
+      <form
+        id="wehForm"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeR-CKVzFGOeIjNzH8eYZXqVanK91Fzo7vdCs1M_oiuWf4sog/formResponse"
+        method="POST"
+        target="hidden_iframe"
+      >
+        <div class="form-grid">
+          <div>
+            <label for="name">Nume și prenume <span class="required">*</span></label>
+            <input id="name" name="entry.1369597782" type="text" required placeholder="Ex: Popescu Andrei" />
+          </div>
+
+          <div>
+            <label for="email">Adresă de email <span class="required">*</span></label>
+            <input id="email" name="entry.1862475963" type="email" required placeholder="Ex: nume@email.ro" />
+          </div>
+
+          <div>
+            <label for="phone">Număr de telefon <span class="required">*</span></label>
+            <input id="phone" name="entry.1446777141" type="tel" required placeholder="Ex: 07xx xxx xxx" />
+          </div>
+
+          <div>
+            <label for="organization">Organizație / Firmă / Instituție <span class="required">*</span></label>
+            <input id="organization" name="entry.44689930" type="text" required placeholder="Ex: Numele firmei" />
+          </div>
+
+          <div>
+            <label for="role">Funcția deținută <span class="required">*</span></label>
+            <input id="role" name="entry.163047261" type="text" required placeholder="Ex: Administrator, Manager, Fermier" />
+          </div>
+
+          <div>
+            <label for="domain">Domeniul de activitate</label>
+            <input id="domain" name="entry.1612890161" type="text" placeholder="Ex: agricultură, servicii, producție" />
+          </div>
+
+          <div class="full">
+            <label for="region">Regiunea / Județul</label>
+            <input id="region" name="entry.1230045514" type="text" placeholder="Ex: București, Ilfov, Prahova, Dâmbovița" />
+          </div>
+
+          <div class="full">
+            <label>Interes principal <span class="required">*</span></label>
+
+            <div class="checkbox-group">
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Digitalizarea organizației" />
+                <span>Digitalizarea organizației</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Agricultură inteligentă" />
+                <span>Agricultură inteligentă</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Soluții IoT și monitorizare" />
+                <span>Soluții IoT și monitorizare</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Automatizarea proceselor" />
+                <span>Automatizarea proceselor</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Inteligență artificială" />
+                <span>Inteligență artificială</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Securitate cibernetică" />
+                <span>Securitate cibernetică</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Tehnologii verzi" />
+                <span>Tehnologii verzi</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Accesare finanțări" />
+                <span>Accesare finanțări</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Training și dezvoltare competențe" />
+                <span>Training și dezvoltare competențe</span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" name="entry.937211651" value="Parteneriate / colaborări viitoare" />
+                <span>Parteneriate / colaborări viitoare</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="full consent">
+            <label>Acord pentru contact ulterior <span class="required">*</span></label>
+
+            <label class="radio-item">
+              <input
+                type="radio"
+                name="entry.337839197"
+                value="Sunt de acord să fiu contactat/contactată în legătură cu oportunități, servicii și activități din cadrul proiectului Wallachia eHub 2.0."
+                required
+              />
+              <span>
+                Sunt de acord să fiu contactat/contactată în legătură cu oportunități, servicii și activități
+                din cadrul proiectului Wallachia eHub 2.0.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button id="submitBtn" type="submit">Trimite datele de contact</button>
+        </div>
+
+        <div id="successMessage" class="message">
+          Mulțumim! Datele au fost transmise cu succes.
+        </div>
+
+        <div id="errorMessage" class="error">
+          Te rugăm să completezi câmpurile obligatorii și să selectezi cel puțin un interes principal.
+        </div>
+
+        <p class="note">
+          Prin completarea formularului, datele introduse sunt transmise către formularul Google asociat proiectului
+          și pot fi centralizate în Google Sheets.
+        </p>
+      </form>
+
+      <iframe name="hidden_iframe" class="hidden-frame"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    © BEIA Consult International — Wallachia eHub 2.0
+  </footer>
+
+  <script>
+    const form = document.getElementById("wehForm");
+    const successMessage = document.getElementById("successMessage");
+    const errorMessage = document.getElementById("errorMessage");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", function (event) {
+      const checkedInterests = document.querySelectorAll('input[name="entry.937211651"]:checked');
+
+      if (checkedInterests.length === 0) {
+        event.preventDefault();
+        successMessage.style.display = "none";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      errorMessage.style.display = "none";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Se trimite...";
+
+      setTimeout(function () {
+        successMessage.style.display = "block";
+        submitBtn.textContent = "Trimis cu succes";
+        form.reset();
+
+        setTimeout(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Trimite datele de contact";
+        }, 2500);
+      }, 1200);
+    });
+  </script>
 
 </body>
 </html>

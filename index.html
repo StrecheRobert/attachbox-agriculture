@@ -1,110 +1,627 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BEIA Smart Agriculture</title>
+
+  <title>BEIA — Soluții digitale pentru agricultură inteligentă</title>
+
   <style>
+    :root {
+      --blue: #163f91;
+      --blue-dark: #0e2b68;
+      --green: #4f9a3d;
+      --green-dark: #2f6f2d;
+      --orange: #f39a28;
+      --orange-dark: #d97800;
+      --bg: #f5f8fb;
+      --text: #1f2933;
+      --muted: #5f6f7a;
+      --white: #ffffff;
+      --shadow: 0 12px 32px rgba(15, 40, 80, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f8f3;
-      color: #1f2933;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg, #1b7f3a, #64a83b);
+    .hero {
+      position: relative;
       color: white;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 52px 20px 86px;
+      background:
+        linear-gradient(135deg, rgba(22, 63, 145, 0.96), rgba(47, 111, 45, 0.94)),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.28), transparent 34%);
+      overflow: hidden;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      background: var(--orange);
+      transform: rotate(35deg);
+      right: -145px;
+      top: -80px;
+      opacity: 0.95;
+      border-radius: 36px;
     }
 
-    header p {
-      margin-top: 12px;
-      font-size: 16px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.18);
+      transform: rotate(-28deg);
+      right: -90px;
+      bottom: 34px;
+      border-radius: 20px;
     }
 
-    main {
-      padding: 24px 18px;
-      max-width: 900px;
+    .dot-pattern {
+      position: absolute;
+      left: 18px;
+      top: 36px;
+      width: 130px;
+      height: 130px;
+      background-image: radial-gradient(rgba(255,255,255,0.75) 2px, transparent 2px);
+      background-size: 16px 16px;
+      opacity: 0.7;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
       margin: auto;
     }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
-    h2 {
-      color: #1b7f3a;
-      margin-top: 0;
+    .hero h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: 34px;
+      line-height: 1.13;
+    }
+
+    .hero p {
+      margin-top: 16px;
+      max-width: 780px;
+      font-size: 17px;
+      color: #eef6ff;
+    }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .button {
       display: inline-block;
-      margin-top: 12px;
-      background: #1b7f3a;
+      padding: 14px 18px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--orange);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .button.secondary {
+      color: white;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    main {
+      max-width: 980px;
+      margin: -42px auto 0;
+      padding: 0 14px 30px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+      animation: rise 0.7s ease both;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.24s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: 0.32s;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(18px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 18px;
+    }
+
+    .intro {
+      border-top: 7px solid var(--orange);
+    }
+
+    .highlight {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #eef8e9, #fff4df);
+      border-left: 6px solid var(--green);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: #f8fbff;
+      border: 1px solid #dce7f5;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: var(--blue);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .domains {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .domain {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid #dce7f5;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .domain::before {
+      content: "";
+      display: block;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      margin-bottom: 12px;
+    }
+
+    .domain::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      right: -34px;
+      top: -34px;
+      background: rgba(22, 63, 145, 0.08);
+    }
+
+    .domain:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(15, 40, 80, 0.12);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff8ed;
+      border: 1px solid #f2d2a5;
+    }
+
+    .step-number {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .navigation-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .nav-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      padding: 22px;
+      min-height: 210px;
       color: white;
       text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 10px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-card.projects {
+      background: linear-gradient(135deg, var(--orange), var(--green));
+    }
+
+    .nav-card.form {
+      background: linear-gradient(135deg, var(--blue), var(--green-dark));
+    }
+
+    .nav-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+      right: -55px;
+      bottom: -55px;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(15, 40, 80, 0.22);
+    }
+
+    .nav-card h3 {
+      color: white;
+      font-size: 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-card p {
+      color: #f4f8ff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-card span {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
       font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(22, 63, 145, 0.96), rgba(14, 43, 104, 0.96));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: rgba(243, 154, 40, 0.24);
+      border-radius: 50%;
+      right: -110px;
+      top: -120px;
+    }
+
+    .cta h2,
+    .cta p,
+    .cta .button {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta h2 {
+      color: white;
+    }
+
+    .cta p {
+      color: #eef6ff;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 24px 16px 28px;
+      color: var(--muted);
       font-size: 13px;
-      color: #607080;
+    }
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 68px 24px 104px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .domains {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .navigation-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <h1>BEIA Smart Agriculture Solutions</h1>
-  <p>Digital technologies for monitoring, automation and data-driven decision-making in agriculture.</p>
-</header>
+  <section class="hero">
+    <div class="dot-pattern"></div>
 
-<main>
-  <section class="card">
-    <h2>About BEIA</h2>
-    <p>
-      BEIA is a Romanian technology company with extensive experience in the development and integration of smart systems based on IoT, communications, sensors, cloud platforms and data visualization tools. Through its research and innovation activities, BEIA supports the digital transformation of multiple sectors, including agriculture, environmental monitoring, water management, smart cities and cultural heritage.
-    </p>
+    <div class="hero-content">
+      <span class="badge">BEIA Consult International</span>
+      <h1>Tehnologii digitale pentru agricultură inteligentă și organizații conectate</h1>
+      <p>
+        BEIA dezvoltă și integrează soluții bazate pe IoT, comunicații, senzori, platforme de date și vizualizare,
+        sprijinind transformarea digitală în agricultură, mediu, energie, orașe inteligente și servicii moderne.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="agriculture-projects.html">Vezi proiectele agricole</a>
+        <a class="button secondary" href="contact-form.html">Completează formularul</a>
+      </div>
+    </div>
   </section>
 
-  <section class="card">
-    <h2>Smart Agriculture Focus</h2>
-    <p>
-      In the agricultural sector, BEIA develops and integrates solutions that help farmers, researchers and stakeholders collect real-time data from the field. These solutions can include environmental sensors, soil monitoring stations, weather parameters, connectivity technologies and platforms for data visualization and alerting.
-    </p>
-    <p>
-      The objective is to support more efficient resource management, early detection of risks, improved crop monitoring and better decision-making based on accurate and timely information.
-    </p>
-  </section>
+  <main>
 
-  <section class="card">
-    <h2>Interactive Experience</h2>
-    <p>
-      This AttachBox demo uses Bluetooth beacons to open dedicated content pages. When a beacon is detected, the application can automatically display relevant information about agriculture-related projects or collaboration opportunities.
-    </p>
-    <a class="button" href="agriculture-projects.html">Explore Agriculture Projects</a>
-  </section>
-</main>
+    <section class="card intro">
+      <h2>Cine este BEIA?</h2>
+      <p>
+        BEIA Consult International este o companie românească cu experiență extinsă în integrarea de soluții
+        tehnologice și echipamente de telecomunicații. Activitatea companiei include proiecte în domenii precum
+        telecomunicații, IoT, Smart Cities, telemonitorizare, E-Health, Smart Energy și agricultură de precizie.
+      </p>
 
-<footer>
-  © BEIA Consult International — Smart Agriculture Demo
-</footer>
+      <div class="highlight">
+        În zona de agricultură inteligentă, BEIA combină senzori, comunicații, platforme digitale, aplicații web
+        și instrumente de analiză pentru a transforma datele din teren în informații utile pentru decizie.
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>30+</strong>
+          ani de experiență în soluții tehnologice și comunicații
+        </div>
+
+        <div class="stat">
+          <strong>10.000+</strong>
+          proiecte în domenii tehnologice diverse
+        </div>
+
+        <div class="stat">
+          <strong>IoT</strong>
+          monitorizare, automatizare, vizualizare și alertare
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Ce tipuri de soluții dezvoltăm?</h2>
+      <p>
+        Soluțiile BEIA sunt orientate către colectarea, transmiterea, stocarea și interpretarea datelor,
+        astfel încât organizațiile să poată lua decizii mai rapide, mai eficiente și mai bine fundamentate.
+      </p>
+
+      <div class="domains">
+        <div class="domain">
+          <h3>Agricultură de precizie</h3>
+          <p>
+            Monitorizarea culturilor, prevenirea riscurilor, gestionarea irigațiilor și analiza parametrilor
+            de mediu pentru susținerea fermierilor și organizațiilor agricole.
+          </p>
+        </div>
+
+        <div class="domain">
+          <h3>IoT și platforme de date</h3>
+          <p>
+            Integrarea senzorilor, comunicațiilor și platformelor digitale pentru monitorizare în timp real,
+            alerte și vizualizarea datelor istorice.
+          </p>
+        </div>
+
+        <div class="domain">
+          <h3>Digitalizare și inovare</h3>
+          <p>
+            Sprijin pentru companii, instituții și parteneri care urmăresc modernizarea proceselor,
+            testarea tehnologiilor și dezvoltarea de servicii digitale.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Cum poate ajuta digitalizarea?</h2>
+      <p>
+        Digitalizarea nu înseamnă doar tehnologie, ci și o modalitate de a înțelege mai bine procesele,
+        de a reduce riscurile și de a utiliza mai eficient resursele disponibile.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Monitorizezi</h3>
+            <p>
+              Colectezi date relevante din teren, din spații controlate, din infrastructuri sau din procesele organizației.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Interpretezi</h3>
+            <p>
+              Transformi valorile măsurate în grafice, rapoarte, alerte și indicatori ușor de urmărit.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Acționezi</h3>
+            <p>
+              Folosești informațiile pentru prevenție, optimizare, planificare și decizii mai rapide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Explorează experiența interactivă</h2>
+      <p>
+        Această pagină face parte dintr-o experiență demonstrativă AttachBox, în care conținutul poate fi accesat
+        direct sau declanșat prin beacon-uri Bluetooth. Vizitatorii pot descoperi proiectele agricole BEIA sau pot
+        lăsa datele de contact pentru colaborări viitoare.
+      </p>
+
+      <div class="navigation-grid">
+        <a class="nav-card projects" href="agriculture-projects.html">
+          <h3>Proiecte agricole</h3>
+          <p>
+            Descoperă proiecte europene, soluții IoT, use case-uri pentru viticultură, sere automatizate,
+            monitorizare și agricultură de precizie.
+          </p>
+          <span>Deschide pagina</span>
+        </a>
+
+        <a class="nav-card form" href="contact-form.html">
+          <h3>Formular de interes</h3>
+          <p>
+            Lasă datele de contact dacă reprezinți o firmă, o organizație, o instituție sau ești interesat de
+            digitalizare, tehnologii verzi și colaborări.
+          </p>
+          <span>Completează formularul</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card cta">
+      <h2>De la date la decizii mai bune</h2>
+      <p>
+        Prin utilizarea tehnologiilor digitale, organizațiile pot monitoriza mai bine resursele, pot preveni riscurile,
+        pot testa soluții inovatoare și pot construi servicii mai eficiente pentru agricultură și nu numai.
+      </p>
+
+      <a class="button primary" href="agriculture-projects.html">Află mai multe despre proiecte</a>
+    </section>
+
+  </main>
+
+  <footer>
+    © BEIA Consult International — Soluții digitale pentru agricultură inteligentă
+  </footer>
 
 </body>
 </html>
